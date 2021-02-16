@@ -29,3 +29,5 @@ def read_table(file, data_set):
 			obj = {"name": row[0], "distance": row[1], "payment": row[2]}
 			objects_array.append(obj)
 		export_data = json.dumps(objects_array, ensure_ascii=False)
+
+	return(export_data)
