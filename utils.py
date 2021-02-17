@@ -1,4 +1,4 @@
-import xlrd
+import xlrd, xlwt
 import json
 
 def read_table(file, data_set):
@@ -30,3 +30,46 @@ def read_table(file, data_set):
 		export_data = json.dumps(objects_array, ensure_ascii=False)
 
 	return objects_array
+
+
+def write_table(file, data_set):
+	wb = xlwt.Workbook()
+	ws = wb.add_sheet('Page')
+
+	if file == 1:	#driver payment
+		ws.write(0, 0, "ФIO")	
+		ws.write(1, 0, data_set[0])
+
+		ws.write(0, 1, "Нараховано")
+		ws.write(1, 1, data_set[1])
+
+		ws.write(0, 2, "Премія")
+		ws.write(1, 2, data_set[2])
+
+		ws.write(0, 3, "Період")
+		ws.write(1, 3, data_set[3])
+
+		wb.save('driver_payment.xls')
+
+		return('driver_payment.xls')
+
+	elif file == 2:	#transport price
+
+		ws.write(0, 0, "Маршрут")	
+		ws.write(1, 0, data_set[0])
+
+		ws.write(0, 1, "Водій")
+		ws.write(1, 1, data_set[1])
+
+		ws.write(0, 2, "Дата відправлення")
+		ws.write(1, 2, data_set[2])
+
+		ws.write(0, 3, "Дата прибуття")
+		ws.write(1, 3, data_set[3])
+
+		wb.save('transport_price.xls')
+
+		return('transport_price.xls')
+
+data_s = ("фамілєя імя отчества", "насчітано", "премушечька", "периода длинна")
+write_table(2, data_s)
