@@ -70,6 +70,3 @@ def write_table(file, data_set):
 		wb.save('transport_price.xls')
 
 		return('transport_price.xls')
-
-data_s = ("фамілєя імя отчества", "насчітано", "премушечька", "периода длинна")
-write_table(2, data_s)
