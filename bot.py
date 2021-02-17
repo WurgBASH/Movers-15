@@ -2,11 +2,7 @@ import logging
 
 from base import *
 import conversation
-
-from telegram.ext import (
-	MessageHandler,
-	Filters,
-)
+import message
 
 import os 
 
@@ -16,11 +12,10 @@ logging.basicConfig(
 	format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
 
-def handle_all(update, context):
-	print('Пришло сообщение от пользователя...')
+
 
 def main():
-	updater.dispatcher.add_handler(MessageHandler(Filters.all, handle_all))
+	updater.dispatcher.add_handler(conversation.conv_handler)
 
 	updater.start_polling()
 	updater.idle()

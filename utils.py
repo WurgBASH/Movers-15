@@ -2,8 +2,7 @@ import xlrd
 import json
 
 def read_table(file, data_set):
-
-	data = xlrd.open_workbook(file, formatting_info=True)
+	data = xlrd.open_workbook(file_contents=file.read())
 	sheet = data.sheet_by_index(0)
 	vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
 	vals.pop(0)
@@ -20,7 +19,7 @@ def read_table(file, data_set):
 
 	elif data_set == 2:	#drivers
 		for row in vals: 
-			obj = {"name": row[0], "expirience": int(row[1]), "car_number": row[2]}
+			obj = {"name": row[0], "experience": int(row[1]), "car_number": row[2]}
 			objects_array.append(obj)
 		export_data = json.dumps(objects_array, ensure_ascii=False)
 
@@ -30,4 +29,4 @@ def read_table(file, data_set):
 			objects_array.append(obj)
 		export_data = json.dumps(objects_array, ensure_ascii=False)
 
-	return(export_data)
+	return objects_array
