@@ -1,4 +1,4 @@
-import xlrd, xlwt
+import xlrd, xlwt, xlsxwriter
 import json
 
 def read_table(file, data_set):
@@ -31,45 +31,86 @@ def read_table(file, data_set):
 
 	return objects_array
 
-
 def write_table(file, data_set):
-	wb = xlwt.Workbook()
-	ws = wb.add_sheet('Page')
 
 	if file == 1:	#driver payment
-		ws.write(0, 0, "ФIO")	
-		ws.write(1, 0, data_set[0])
+		workbook = xlsxwriter.Workbook('driver_payment.xls')
+		worksheet = workbook.add_worksheet()
+		header = workbook.add_format()
+		header.set_font_size(25)
 
-		ws.write(0, 1, "Нараховано")
-		ws.write(1, 1, data_set[1])
+		titles = workbook.add_format()
+		titles.set_font_size(15)
+		titles.set_align('center')
+		titles.set_bold()
 
-		ws.write(0, 2, "Премія")
-		ws.write(1, 2, data_set[2])
+		data_cells = workbook.add_format()
+		data_cells.set_align('vjustify')
 
-		ws.write(0, 3, "Період")
-		ws.write(1, 3, data_set[3])
 
-		wb.save('driver_payment.xls')
+		cell_format = workbook.add_format()
+
+		worksheet.set_column('A1:A', 80)
+		worksheet.set_column('A2:A2', 20)
+		worksheet.set_column('B2:B2', 20)
+		worksheet.set_column('C2:C2', 20)
+		worksheet.set_column('D2:D2', 20)
+
+
+		bold = workbook.add_format({'bold': True})
+
+		worksheet.write('A1', 'Відомість про заробітну плату водіїв', header)
+
+		worksheet.write('A3', 'ФIO', titles)
+		worksheet.write('A4', data_set[0], data_cells)
+		worksheet.write('B3', 'Нараховано', titles)
+		worksheet.write('B4', data_set[1], data_cells)
+		worksheet.write('C3', 'Премія', titles)
+		worksheet.write('C4', data_set[2], data_cells)
+		worksheet.write('D3', 'Період', titles)
+		worksheet.write('D4', data_set[3], data_cells)
+		workbook.close()
 
 		return('driver_payment.xls')
 
+		
 	elif file == 2:	#transport price
+		workbook = xlsxwriter.Workbook('transport_price.xls')
+		worksheet = workbook.add_worksheet()
+		header = workbook.add_format()
+		header.set_font_size(25)
 
-		ws.write(0, 0, "Маршрут")	
-		ws.write(1, 0, data_set[0])
+		titles = workbook.add_format()
+		titles.set_font_size(15)
+		titles.set_align('center')
+		titles.set_align('vjustify')
+		titles.set_bold()
 
-		ws.write(0, 1, "Водій")
-		ws.write(1, 1, data_set[1])
+		data_cells = workbook.add_format()
+		data_cells.set_align('vjustify')
 
-		ws.write(0, 2, "Дата відправлення")
-		ws.write(1, 2, data_set[2])
 
-		ws.write(0, 3, "Дата прибуття")
-		ws.write(1, 3, data_set[3])
+		cell_format = workbook.add_format()
 
-		wb.save('transport_price.xls')
+		worksheet.set_column('A1:A', 80)
+		worksheet.set_column('A2:A2', 20)
+		worksheet.set_column('B2:B2', 20)
+		worksheet.set_column('C2:C2', 20)
+		worksheet.set_column('D2:D2', 20)
+
+
+		bold = workbook.add_format({'bold': True})
+
+		worksheet.write('A1', 'Відомість про заробітну плату водіїв', header)
+
+		worksheet.write('A3', 'Маршрут', titles)
+		worksheet.write('A4', data_set[0], data_cells)
+		worksheet.write('B3', 'Водій', titles)
+		worksheet.write('B4', data_set[1], data_cells)
+		worksheet.write('C3', 'Дата відправлення', titles)
+		worksheet.write('C4', data_set[2], data_cells)
+		worksheet.write('D3', 'Дата прибуття', titles)
+		worksheet.write('D4', data_set[3], data_cells)
+		workbook.close()
 
 		return('transport_price.xls')
-
-data_s = ("фамілєя імя отчества", "насчітано", "премушечька", "периода длинна")
-write_table(2, data_s)
