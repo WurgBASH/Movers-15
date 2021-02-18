@@ -1,5 +1,6 @@
 import xlrd, xlsxwriter
 import json
+from io import BytesIO
 
 def read_table(file, data_set):
 	data = xlrd.open_workbook(file_contents=file.read())
@@ -33,8 +34,10 @@ def read_table(file, data_set):
 
 def write_table(file, data_set):
 
+	output = BytesIO()
+
 	if file == 1:	#driver payment
-		workbook = xlsxwriter.Workbook('driver_payment.xlsx')
+		workbook = xlsxwriter.Workbook(output)
 		worksheet = workbook.add_worksheet()
 		header = workbook.add_format()
 		header.set_font_size(25)
@@ -70,12 +73,12 @@ def write_table(file, data_set):
 		worksheet.write('D3', 'Період', titles)
 		worksheet.write('D4', data_set[3], data_cells)
 		workbook.close()
-
-		return('driver_payment.xlsx')
+		
+		return(output.getvalue())
 
 		
 	elif file == 2:	#transport price
-		workbook = xlsxwriter.Workbook('transport_price.xlsx')
+		workbook = xlsxwriter.Workbook(output)
 		worksheet = workbook.add_worksheet()
 		header = workbook.add_format()
 		header.set_font_size(25)
@@ -113,4 +116,4 @@ def write_table(file, data_set):
 		worksheet.write('D4', data_set[3], data_cells)
 		workbook.close()
 
-		return('transport_price.xlsx')
+		return(output.getvalue())
