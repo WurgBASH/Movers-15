@@ -1,4 +1,4 @@
-import xlrd, xlwt, xlsxwriter
+import xlrd, xlsxwriter
 import json
 
 def read_table(file, data_set):
@@ -103,4 +103,16 @@ def write_table(file, data_set):
 
 		worksheet.write('A1', 'Відомість про заробітну плату водіїв', header)
 
-		return('transport_price.xls')
+		worksheet.write('A3', 'Маршрут', titles)
+		worksheet.write('A4', data_set[0], data_cells)
+		worksheet.write('B3', 'Водій', titles)
+		worksheet.write('B4', data_set[1], data_cells)
+		worksheet.write('C3', 'Дата відправлення', titles)
+		worksheet.write('C4', data_set[2], data_cells)
+		worksheet.write('D3', 'Дата прибуття', titles)
+		worksheet.write('D4', data_set[3], data_cells)
+		workbook.close()
+
+		return('transport_price.xlsx')
+
+write_table(2, (1,2,3,4))
