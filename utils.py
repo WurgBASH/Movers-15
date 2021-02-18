@@ -114,5 +114,3 @@ def write_table(file, data_set):
 		workbook.close()
 
 		return('transport_price.xlsx')
-
-write_table(2, (1,2,3,4))
