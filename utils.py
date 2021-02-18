@@ -34,7 +34,7 @@ def read_table(file, data_set):
 def write_table(file, data_set):
 
 	if file == 1:	#driver payment
-		workbook = xlsxwriter.Workbook('driver_payment.xls')
+		workbook = xlsxwriter.Workbook('driver_payment.xlsx')
 		worksheet = workbook.add_worksheet()
 		header = workbook.add_format()
 		header.set_font_size(25)
@@ -71,11 +71,11 @@ def write_table(file, data_set):
 		worksheet.write('D4', data_set[3], data_cells)
 		workbook.close()
 
-		return('driver_payment.xls')
+		return('driver_payment.xlsx')
 
 		
 	elif file == 2:	#transport price
-		workbook = xlsxwriter.Workbook('transport_price.xls')
+		workbook = xlsxwriter.Workbook('transport_price.xlsx')
 		worksheet = workbook.add_worksheet()
 		header = workbook.add_format()
 		header.set_font_size(25)
@@ -113,4 +113,4 @@ def write_table(file, data_set):
 		worksheet.write('D4', data_set[3], data_cells)
 		workbook.close()
 
-		return('transport_price.xls')
+		return('transport_price.xlsx')
