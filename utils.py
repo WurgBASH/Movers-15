@@ -63,18 +63,21 @@ def write_table(file, data_set):
 		bold = workbook.add_format({'bold': True})
 
 		worksheet.write('A1', 'Відомість про заробітну плату водіїв', header)
-
-		worksheet.write('A3', 'ФIO', titles)
-		worksheet.write('A4', data_set[0], data_cells)
-		worksheet.write('B3', 'Нараховано', titles)
-		worksheet.write('B4', data_set[1], data_cells)
-		worksheet.write('C3', 'Премія', titles)
-		worksheet.write('C4', data_set[2], data_cells)
-		worksheet.write('D3', 'Період', titles)
-		worksheet.write('D4', data_set[3], data_cells)
+		idc = 4
+		for data in data_set:
+			worksheet.write('A3', 'ФIO', titles)
+			worksheet.write('A%d'%(idc), data[0], data_cells)
+			worksheet.write('B3', 'Нараховано', titles)
+			worksheet.write('B%d'%(idc), data[1], data_cells)
+			worksheet.write('C3', 'Премія', titles)
+			worksheet.write('C%d'%(idc), data[2], data_cells)
+			worksheet.write('D3', 'Період', titles)
+			worksheet.write('D%d'%(idc), data[3], data_cells)
+			idc+=1
+		
 		workbook.close()
 		
-		return(output.getvalue())
+		return (output , 'Відомість.xlsx')
 
 		
 	elif file == 2:	#transport price
@@ -100,20 +103,25 @@ def write_table(file, data_set):
 		worksheet.set_column('B2:B2', 20)
 		worksheet.set_column('C2:C2', 20)
 		worksheet.set_column('D2:D2', 20)
+		worksheet.set_column('E2:E2', 20)
 
 
 		bold = workbook.add_format({'bold': True})
 
-		worksheet.write('A1', 'Відомість про заробітну плату водіїв', header)
-
-		worksheet.write('A3', 'Маршрут', titles)
-		worksheet.write('A4', data_set[0], data_cells)
-		worksheet.write('B3', 'Водій', titles)
-		worksheet.write('B4', data_set[1], data_cells)
-		worksheet.write('C3', 'Дата відправлення', titles)
-		worksheet.write('C4', data_set[2], data_cells)
-		worksheet.write('D3', 'Дата прибуття', titles)
-		worksheet.write('D4', data_set[3], data_cells)
+		worksheet.write('A1', 'Відомість вартість перевезення', header)
+		idc = 4
+		for data in data_set:
+			worksheet.write('A3', 'Маршрут', titles)
+			worksheet.write('A%d'%(idc), data[0], data_cells)
+			worksheet.write('B3', 'Водій', titles)
+			worksheet.write('B%d'%(idc), data[1], data_cells)
+			worksheet.write('C3', 'Дата відправлення', titles)
+			worksheet.write('C%d'%(idc), data[2], data_cells)
+			worksheet.write('D3', 'Дата прибуття', titles)
+			worksheet.write('D%d'%(idc), data[3], data_cells)
+			worksheet.write('E3', 'Оплата, грн', titles)
+			worksheet.write('E%d'%(idc), data[4], data_cells)
+		
 		workbook.close()
 
-		return(output.getvalue())
+		return (output , 'Відомість.xlsx')

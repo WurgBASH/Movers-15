@@ -7,10 +7,10 @@ from telegram import (ReplyKeyboardRemove,
 
 
 def main_menu():
-	return ReplyKeyboardMarkup([['Редагувати перевезення'], ['Завантаження звітів'], ['Завантаження документів'], ['Налаштування']], resize_keyboard=True)
+	return ReplyKeyboardMarkup([['Перевезення'], ['Звіти', 'Документи'], ['Налаштування']], resize_keyboard=True)
 
 def settings_menu():
-	return ReplyKeyboardMarkup([['Редагувати тарифи'], ['Редагувати водіїв'], ['Редагувати маршрути'], ['Редагувати машини'], ['Повернутися в меню']], resize_keyboard=True)
+	return ReplyKeyboardMarkup([['Тарифи','Водії'], ['Маршрути','Машини'], ['Повернутися в меню']], resize_keyboard=True)
 
 def transported_menu():
 	return ReplyKeyboardMarkup([['Додати перевезення'], ['Видалити перевезення'], ['Повернутися в меню']], resize_keyboard=True)

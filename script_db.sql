@@ -24,6 +24,8 @@ CREATE TABLE transportations
 	transportation_id  INTEGER NULL,
 	description  VARCHAR(20) NULL,
 	route_id  INTEGER NULL,
+	start_date DATE NULL,
+	end_date  DATE NULL,
 	PRIMARY KEY (transportation_id) 
 	FOREIGN KEY (route_id) REFERENCES routes(route_id)
 )

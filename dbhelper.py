@@ -57,9 +57,9 @@ class DBHelper:
 		self.conn.commit()
 
 	def insert_transportation(self, obj):
-		sql = "INSERT INTO transportations(description, route_id) VALUES (?, ?);"
+		sql = "INSERT INTO transportations(description, route_id, start_date, end_date) VALUES (?, ?, ?, ?);"
 
-		self.conn.execute(sql, (obj['description'], obj['route_id']))
+		self.conn.execute(sql, (obj['description'], obj['route_id'], obj['start_date'], obj['end_date']))
 		self.conn.commit()
 
 	def find_transportation(self, obj):
@@ -85,4 +85,5 @@ class DBHelper:
 		self.conn.commit()
 		return conn_execute
 
-		
+
+

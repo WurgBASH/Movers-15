@@ -43,6 +43,36 @@ conv_handler = ConversationHandler(
 			states.TRANSPORTATION[4]: [
 				MessageHandler(Filters.text, flows.add_transportation_6),
 			],
+			states.TARIF[0]: [
+				MessageHandler(Filters.text, flows.change_tarif),
+			],
+			states.DRIVER[0]: [
+				MessageHandler(Filters.text, flows.add_driver_2),
+			],
+			states.DRIVER[1]: [
+				MessageHandler(Filters.text, flows.add_driver_3),
+			],
+			states.DRIVER[2]: [
+				MessageHandler(Filters.text, flows.add_driver_4),
+			],
+			states.CAR[0]: [
+				MessageHandler(Filters.text, flows.add_car_2),
+			],
+			states.CAR[1]: [
+				MessageHandler(Filters.text, flows.add_car_3),
+			],
+			states.CAR[2]: [
+				MessageHandler(Filters.text, flows.add_car_4),
+			],
+			states.ROUTE[0]: [
+				MessageHandler(Filters.text, flows.add_route_2),
+			],
+			states.ROUTE[1]: [
+				MessageHandler(Filters.text, flows.add_route_3),
+			],
+			states.ROUTE[2]: [
+				MessageHandler(Filters.text, flows.add_route_4),
+			],
 
 		},
 		fallbacks=[CommandHandler('cancel', cancel)],

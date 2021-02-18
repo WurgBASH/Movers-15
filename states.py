@@ -1,3 +1,7 @@
 REGISTRATION = range(0,10)
 UPLOAD = range(11,20)
 TRANSPORTATION = range(21,30)
+TARIF = range(31,40)
+DRIVER = range(41,50)
+CAR = range(51,60)
+ROUTE = range(61,70)
